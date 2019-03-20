@@ -86,7 +86,7 @@ while true; do
   ds_id="$(to-get 'api/1.3/deliveryservices' 2>/dev/null | jq -r -c '.response[].id')"
   edge_verify=$(to-get "/api/1.2/deliveryservices/$ds_id/servers" | jq -r '.response[]|.hostName')
 
-  if [[ $edge_verify = $edge_name ]] ; then
+  if [[ "$edge_verify" = "$edge_name" ]] && [[ "$edge_name" != "" ]] ; then
     break
   fi
 
